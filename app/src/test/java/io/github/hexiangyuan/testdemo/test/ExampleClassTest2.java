@@ -3,7 +3,6 @@ package io.github.hexiangyuan.testdemo.test;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
@@ -12,14 +11,9 @@ import org.mockito.Spy;
  * Creator:HeXiangYuan
  * Date  : 16-11-21
  */
-class ExampleClass {
-    public String test() {
-        return "test";
-    }
-}
 
-public class ExampleMockTest {
-    @Mock
+public class ExampleClassTest2 {
+    @Spy
     ExampleClass exampleClass;
 
     @Before
@@ -28,15 +22,13 @@ public class ExampleMockTest {
     }
 
     @Test
-    public void tesOrigin() {
-        Assert.assertEquals("test", exampleClass.test());//will fail testOrigin()会报失败，因为test()方法被hook后返回了nul
+    public void testOrigin() {
+        Assert.assertEquals("test", exampleClass.test());//success
     }
 
     @Test
-    public void testMock() {
+    public void testMockSky(){//success
         Mockito.when(exampleClass.test()).thenReturn("test");
-        Assert.assertEquals("test", exampleClass.test());//successed
+        Assert.assertEquals("test",exampleClass.test());
     }
 }
-
-
